@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * A simple model of an auction.
  * The auction maintains a list of lots of arbitrary length.
- *
+ * -------------------------------- representa una subasta. --------------------
  * @author David J. Barnes and Michael Kölling.
  * @version 2011.07.31
  */
@@ -41,6 +41,7 @@ public class Auction
     {
         for(Lot lot : lots) {
             System.out.println(lot.toString());
+            System.out.println( );
         }
     }
     
