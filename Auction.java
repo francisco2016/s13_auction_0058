@@ -14,6 +14,8 @@ public class Auction
     // The number that will be given to the next lot entered
     // into this auction.
     private int nextLotNumber;
+    // The list of Lots in this auction sin puja.----------------------------------------- 0061
+    private ArrayList<Lot> lotsSinPuja;
 
     /**
      * Create a new auction.
@@ -22,6 +24,7 @@ public class Auction
     {
         lots = new ArrayList<Lot>();
         nextLotNumber = 1;
+        lotsSinPuja = new ArrayList<>(); 
     }
 
     /**
@@ -31,7 +34,7 @@ public class Auction
      * -------------------------------------------------------------------------------------- 0060
      */
     public void close(){
-            System.out.println("---     ITEMS FOR AUCTION    ----" ); 
+        System.out.println("---     ITEMS FOR AUCTION    ----" ); 
         System.out.println("---                   ----" ); 
         for(Lot lot: lots){
             if(lot.getHighestBid() != null){
@@ -44,10 +47,24 @@ public class Auction
             }
             else
             {
-                 System.out.println("------  Objeto/s sin puja en la subasta :  ----" );
+                System.out.println("------  Objeto/s sin puja en la subasta :  ----" );
                 System.out.println(lot.toString());
             }
         }
+    }
+
+    /**
+     *devuelva una colección de todos los items por los que no habido ninguna puja en este momento; este método no debe 
+     *imprimir nada por pantalla.------------------------------------------------------------------------- 0061
+     */
+    public ArrayList<Lot> getUnsold (){
+       ArrayList<Lot> lotSinP = new ArrayList<>();
+       for(Lot lot: lots){
+           if(lot.getHighestBid() == null){
+               lotSinP.add(lot);
+           }
+       }
+       return lotSinP;
     }
 
     /**
