@@ -25,6 +25,32 @@ public class Auction
     }
 
     /**
+     * Este método debe mostrar por pantalla los detalles de todos los items que se estén subastando actualmente.
+     * De aquellos por los que haya habido pujas se debe indicar el nombre de la persona que ha hecho la puja más alta y
+     * el valor de dicha puja; del resto debe indicar que no ha habido pujas.
+     * -------------------------------------------------------------------------------------- 0060
+     */
+    public void close(){
+            System.out.println("---     ITEMS FOR AUCTION    ----" ); 
+        System.out.println("---                   ----" ); 
+        for(Lot lot: lots){
+            if(lot.getHighestBid() != null){
+                System.out.println("---Detalle del item por los que se ha pujado:  ----" );                
+                System.out.println("Posición del objeto subastado: " +lot.getNumber()+ "º ");
+                System.out.println("Descripción del objeto: " +lot.getDescription());
+                System.out.println("La puja más alta ha sido de: " +lot.getHighestBid().getValue()+ " €");
+                System.out.println("Nombre del pujador: " +lot.getHighestBid().getBidder().getName() );
+                System.out.println("    ---         ---         ---");
+            }
+            else
+            {
+                 System.out.println("------  Objeto/s sin puja en la subasta :  ----" );
+                System.out.println(lot.toString());
+            }
+        }
+    }
+
+    /**
      * Enter a new lot into the auction.
      * --------------------------------Introducir un nuevo lote en la subasta.
      * @param description A description of the lot.
@@ -57,24 +83,8 @@ public class Auction
      */
     public void makeABid(int lotNumber, Person bidder, long value)
     {
-        //         Lot selectedLot = getLot(lotNumber);
-        //         if(selectedLot != null) {
-        //             Bid bid = new Bid(bidder, value);
-        //             boolean successful = selectedLot.bidFor(bid);
-        //             if(successful) {
-        //                 System.out.println("The bid for lot number " +
-        //                     lotNumber + " was successful.");
-        //             }
-        //             else {
-        //                 // Report which bid is higher.
-        //                 Bid highestBid = selectedLot.getHighestBid();
-        //                 System.out.println("Lot number: " + lotNumber +
-        //                     " already has a bid of: " +
-        //                     highestBid.getValue());
-        //             }
-        //         }
         Lot selectedLot = getLot(lotNumber);
-               if(selectedLot != null) {
+        if(selectedLot != null) {
             boolean successful = selectedLot.bidFor(new Bid(bidder, value));
             if(successful) {
                 System.out.println("The bid for lot number " +
