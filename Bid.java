@@ -1,7 +1,8 @@
 /**
  * A class that models an auction bid.
  * It contains a reference to the Person bidding and the amount bid.
- * 
+ * ---------------------------Una clase que modela una oferta de la subasta.
+  *-------- Contiene una referencia a la licitación y la oferta Persona cantidad.
  * @author David J. Barnes and Michael KÃ¶lling.
  * @version 2011.07.31
  */
