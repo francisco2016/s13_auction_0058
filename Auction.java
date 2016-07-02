@@ -102,13 +102,13 @@ public class Auction
      *posición n-1 por la posibilidad de que haya borrado de elementos. Este método debe devolver el elemento eliminado o null
      *en caso de que dicho elemento no exista.------------------------------------------------------------- 0062
      */
-    //     public Lot removeLot(int num){
-    //         Lot lotEliminado = null;
-    //         if(lotEliminado.getNumber() != null){
-    //             lots.remove(num);
-    //         }
-    //         return lotEliminado;
-    //     }
+    public Lot removeLot(int num){
+        Lot lotEliminado = getLot(num);
+        if(lotEliminado != null){
+            lots.remove(lotEliminado);
+        }
+        return lotEliminado;
+    }
 
     /**
      * Enter a new lot into the auction.
