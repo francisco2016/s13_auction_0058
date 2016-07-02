@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  * A simple model of an auction.
  * The auction maintains a list of lots of arbitrary length.
@@ -58,14 +58,57 @@ public class Auction
      *imprimir nada por pantalla.------------------------------------------------------------------------- 0061
      */
     public ArrayList<Lot> getUnsold (){
-       ArrayList<Lot> lotSinP = new ArrayList<>();
-       for(Lot lot: lots){
-           if(lot.getHighestBid() == null){
-               lotSinP.add(lot);
-           }
-       }
-       return lotSinP;
+        ArrayList<Lot> lotSinP = new ArrayList<>();
+        for(Lot lot: lots){
+            if(lot.getHighestBid() == null){
+                lotSinP.add(lot);
+            }
+        }
+        return lotSinP;
     }
+
+    /**
+     * 
+     * Return the lot with the given number. Return null* 
+     * reescribir este mt- para que, en el caso de que implementaramos un imaginario método que eliminara objetosLot de la 
+     * colección de objetos Lot de la clase Auction, dicho método getLot siguiera funcionando correctamente.
+     * ----------------------------------------------------------------------------------------------  0062
+     * if a lot with this number does not exist.
+     * @param lotNumber The number of the lot to return.
+     */
+    public Lot getLot(int lotNumber)
+    {
+        Lot selectedLot = null;
+        boolean encontrado = false;
+        int index = 0;
+        while(index < lots.size() && !encontrado) {          
+            if(lots.get(index).getNumber() == lotNumber) {
+                selectedLot = lots.get(index);
+                encontrado = true;
+            } 
+            index ++;
+        }
+        if(!encontrado) {
+            System.out.println("Lot number: " + lotNumber +
+                " does not exist.");
+            selectedLot = null;
+        }
+        return selectedLot; 
+    }
+
+    /**
+     *Implementa en la clase Auction un método denominado removeLot que reciba como parámetro un entero que represente el número 
+     *identificador de un item y elimine dicho item de la colección de items. No se puede asumir que un item n estará en la
+     *posición n-1 por la posibilidad de que haya borrado de elementos. Este método debe devolver el elemento eliminado o null
+     *en caso de que dicho elemento no exista.------------------------------------------------------------- 0062
+     */
+    //     public Lot removeLot(int num){
+    //         Lot lotEliminado = null;
+    //         if(lotEliminado.getNumber() != null){
+    //             lots.remove(num);
+    //         }
+    //         return lotEliminado;
+    //     }
 
     /**
      * Enter a new lot into the auction.
@@ -116,32 +159,4 @@ public class Auction
         }
     }
 
-    /**
-     * Return the lot with the given number. Return null
-     * if a lot with this number does not exist.
-     * @param lotNumber The number of the lot to return.
-     */
-    public Lot getLot(int lotNumber)
-    {
-        if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
-            // The number seems to be reasonable.
-            Lot selectedLot = lots.get(lotNumber - 1);
-            // Include a confidence check to be sure we have the
-            // right lot.
-            if(selectedLot.getNumber() != lotNumber) {
-                System.out.println("Internal error: Lot number " +
-                    selectedLot.getNumber() +
-                    " was returned instead of " +
-                    lotNumber);
-                // Don't return an invalid lot.
-                selectedLot = null;
-            }
-            return selectedLot;
-        }
-        else {
-            System.out.println("Lot number: " + lotNumber +
-                " does not exist.");
-            return null;
-        }
-    }
 }
